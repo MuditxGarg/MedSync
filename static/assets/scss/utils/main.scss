@@ -1,0 +1,52 @@
+/****** UTILS ******/
+@import "utils/variables";
+@import "utils/mixins";
+
+/******* BASE *******/
+@import "base/reset";
+@import "base/typography";
+@import "base/colors"; 
+@import "base/base";
+@import "base/grid";
+
+/******* COMPONENTS ******/
+@import "components/button";
+@import "components/cursor";
+@import "components/switch";
+
+/****** LAYOUT ******/
+@import "layout/bootstrap-classes";
+@import "layout/avatar";
+@import "layout/select2";
+@import "layout/breadcrumb";
+@import "layout/focus-label";
+@import "layout/loader";
+@import "layout/table";
+@import "layout/slick-slider";
+@import "layout/content";
+@import "layout/footer";
+@import "layout/footer-14";
+@import "layout/footer-15";
+@import "layout/footer-16";
+@import "layout/header";
+@import "layout/header-ten";
+@import "layout/header-14";
+@import "layout/header-12";
+@import "layout/header-13";
+@import "layout/header-15";
+@import "layout/header-16";
+@import "layout/nav-tabs";
+@import "layout/slider";
+@import "layout/footer-1";
+@import "layout/footer-2";
+@import "layout/footer-10";
+@import "layout/footer-12";
+@import "layout/footer-13";
+@import "layout/header-11";
+@import "layout/footer-11";
+
+/****** PAGES ******/
+@import "pages/home";
+@import "pages/contact";
+
+
