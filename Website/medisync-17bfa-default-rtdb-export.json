@@ -1,0 +1,392 @@
+{
+  "doctor": {
+    "ID-1": {
+      "FirstName": "Ajay",
+      "Free-Days": [
+        "Wednesday",
+        "Saturday"
+      ],
+      "Free-Time": [
+        "2pm-3pm",
+        "4pm-5pm",
+        "6pm-7pm",
+        "9pm-10pm"
+      ],
+      "LastName": "Shukla",
+      "Speciality": "Cancer"
+    },
+    "ID-2": {
+      "FirstName": "Rajesh",
+      "Free-Days": [
+        "Tuesday",
+        "Thursday"
+      ],
+      "Free-Time": [
+        "4pm-5pm",
+        "8pm-9pm"
+      ],
+      "LastName": "Kumar",
+      "Speciality": "Cardiology"
+    },
+    "ID-3": {
+      "FirstName": "Priya",
+      "Free-Days": [
+        "Saturday",
+        "Friday"
+      ],
+      "Free-Time": [
+        "3pm-4pm",
+        "7pm-8pm"
+      ],
+      "LastName": "Verma",
+      "Speciality": "Dermatology"
+    },
+    "ID-4": {
+      "FirstName": "Amit",
+      "Free-Days": [
+        "Monday",
+        "Thursday"
+      ],
+      "Free-Time": [
+        "2pm-3pm",
+        "6pm-7pm"
+      ],
+      "LastName": "Singh",
+      "Speciality": "Orthopedics"
+    }
+  },
+  "patient": {
+    "patient1": {
+      "appointments": [
+        null,
+        {
+          "date": "24-10-23",
+          "doctor": "ID-1",
+          "prescription": [
+            "Paclitaxel",
+            "Dosage: 100 mg/m² every three weeks",
+            "Frequency: As per oncologist's instructions"
+          ],
+          "speciality": "Cancer"
+        },
+        {
+          "date": "25-10-23",
+          "doctor": "ID-2",
+          "prescription": [
+            "Atorvastatin",
+            "Dosage: 20 mg daily after dinner",
+            "Frequency: Daily"
+          ],
+          "speciality": "Cardiology"
+        },
+        {
+          "date": "26-10-23",
+          "doctor": "ID-3",
+          "prescription": [
+            "Hydrocortisone Cream",
+            "Instructions: Apply a thin layer to affected areas",
+            "Frequency: Twice daily"
+          ],
+          "speciality": "Dermatology"
+        },
+        {
+          "date": "27-10-23",
+          "doctor": "ID-4",
+          "prescription": [
+            "Ibuprofen",
+            "Dosage: 400 mg every 4-6 hours",
+            "Frequency: As needed for pain relief"
+          ],
+          "speciality": "Orthopedics"
+        },
+        {
+          "date": "28-10-23",
+          "doctor": "ID-1",
+          "prescription": [
+            "Carboplatin",
+            "Dosage: 300 mg/m² every three weeks",
+            "Frequency: As per oncologist's instructions"
+          ],
+          "speciality": "Cancer"
+        }
+      ],
+      "chat": {
+        "ID1": [
+          [
+            "patient1",
+            "What am I supposed to do for cold fever?",
+            "2023-10-29 10:00 AM"
+          ],
+          [
+            "doctor",
+            "I recommend resting, drinking plenty of fluids, and taking acetaminophen for fever. If it persists, please visit the clinic.",
+            "2023-10-29 10:15 AM"
+          ],
+          [
+            "patient1",
+            "Thank you, I'll follow your advice.",
+            "2023-10-29 10:30 AM"
+          ]
+        ],
+        "ID2": [
+          [
+            "patient1",
+            "What am I supposed to do for cold fever?",
+            "2023-10-30 11:00 AM"
+          ],
+          [
+            "doctor",
+            "Rest, hydrate, and take ibuprofen to reduce fever. If it continues, come in for an examination.",
+            "2023-10-30 11:15 AM"
+          ],
+          [
+            "patient1",
+            "Thank you, I'll follow your advice.",
+            "2023-10-30 11:30 AM"
+          ]
+        ],
+        "ID3": [
+          [
+            "patient1",
+            "What am I supposed to do for cold fever?",
+            "2023-11-01 2:00 PM"
+          ],
+          [
+            "doctor",
+            "For a cold fever, rest, drink warm fluids, and consider over-the-counter cold medicine. If it worsens, consult a healthcare professional.",
+            "2023-11-01 2:15 PM"
+          ],
+          [
+            "patient1",
+            "Thank you, I'll follow your advice.",
+            "2023-11-01 2:30 PM"
+          ]
+        ],
+        "ID4": [
+          [
+            "patient1",
+            "What am I supposed to do for cold fever?",
+            "2023-11-02 3:30 PM"
+          ],
+          [
+            "doctor",
+            "Get plenty of rest, stay hydrated, and take paracetamol for the fever. If it persists, seek medical attention.",
+            "2023-11-02 3:45 PM"
+          ],
+          [
+            "patient1",
+            "Thank you, I'll follow your advice.",
+            "2023-11-02 4:00 PM"
+          ]
+        ],
+        "ID5": [
+          [
+            "patient1",
+            "What am I supposed to do for cold fever?",
+            "2023-11-03 5:00 PM"
+          ],
+          [
+            "doctor",
+            "Rest, keep warm, drink fluids, and consider acetaminophen. If it doesn't improve, consult a healthcare provider.",
+            "2023-11-03 5:15 PM"
+          ],
+          [
+            "patient1",
+            "Thank you, I'll follow your advice.",
+            "2023-11-03 5:30 PM"
+          ]
+        ]
+      },
+      "dailydata": {
+        "21-10-23": {
+          "heart": [
+            74,
+            74,
+            -1,
+            -1,
+            -1,
+            -1,
+            60,
+            60,
+            60,
+            61
+          ],
+          "mic": [
+            43,
+            -0.19,
+            1010,
+            1010,
+            1010,
+            31,
+            30,
+            1011,
+            1010,
+            1010
+          ],
+          "pres": [
+            949381,
+            59,
+            946030,
+            945970,
+            945967,
+            945845,
+            945943,
+            946090,
+            946247,
+            946004
+          ],
+          "presdiff": [
+            2951,
+            -1,
+            160,
+            -60,
+            -3,
+            -122,
+            98,
+            147,
+            157,
+            -243
+          ],
+          "spo": [
+            -1,
+            0.08,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "temp": [
+            -53.37,
+            0.82,
+            -56.43,
+            -58.26,
+            -56.43,
+            -54.82,
+            -56.43,
+            -47.77,
+            -50.87,
+            -54.82
+          ],
+          "xaxis": [
+            0.07,
+            0.07,
+            0.07,
+            0.07,
+            0.07,
+            0.08,
+            0.08,
+            0.07,
+            0.08,
+            0.07
+          ],
+          "yaxis": [
+            -0.19,
+            -0.19,
+            -0.19,
+            -0.19,
+            -0.19,
+            -0.19,
+            -0.19,
+            -0.19,
+            -0.19,
+            -0.19
+          ],
+          "zaxis": [
+            0.82,
+            0.81,
+            0.82,
+            0.82,
+            0.81,
+            0.82,
+            0.82,
+            0.82,
+            0.82,
+            0.82
+          ]
+        }
+      },
+      "general": {
+        "BloodType": "A+",
+        "ContactInformation": {
+          "Address": "123 Main Street, City, Country",
+          "EmailAddress": "js23@email.com",
+          "PhoneNumber": "+123-456-7890"
+        },
+        "DOB": "01-01-1980",
+        "EmergencyContact": {
+          "ContactInformation": {
+            "Address": "456 Side Street, City, Country",
+            "PhoneNumber": "+123-555-5555"
+          },
+          "Name": "Kanika Gulati",
+          "Relationship": "Spouse"
+        },
+        "FirstName": "Jasmeet",
+        "Gender": "Male",
+        "Height": "175 cm",
+        "LastName": "Singh",
+        "Weight": "70 kg"
+      }
+    },
+    "patient2": {
+      "appointments": [
+        null,
+        {
+          "date": "29-10-23",
+          "doctor": "ID-1",
+          "prescription": [
+            "Paclitaxel",
+            "Dosage: 100 mg/m² every three weeks",
+            "Frequency: As per oncologist's instructions"
+          ],
+          "speciality": "Cancer"
+        }
+      ],
+      "chat": {
+        "ID1": [
+          [
+            "patient2",
+            "What am I supposed to do for cold fever?",
+            "2023-10-29 10:00 AM"
+          ],
+          [
+            "doctor",
+            "I recommend resting, drinking plenty of fluids, and taking acetaminophen for fever. If it persists, please visit the clinic.",
+            "2023-10-29 10:15 AM"
+          ],
+          [
+            "patient2",
+            "Thank you, I'll follow your advice.",
+            "2023-10-29 10:30 AM"
+          ]
+        ]
+      },
+      "general": {
+        "BloodType": "B+",
+        "ContactInformation": {
+          "Address": "456 Side Street, City, Country",
+          "EmailAddress": "johndoe@email.com",
+          "PhoneNumber": "+123-555-5555"
+        },
+        "DOB": "02-02-1985",
+        "EmergencyContact": {
+          "ContactInformation": {
+            "Address": "789 Other Street, City, Country",
+            "PhoneNumber": "+123-777-7777"
+          },
+          "Name": "Anushree Jaswant",
+          "Relationship": "Spouse"
+        },
+        "FirstName": "Kuldeep Nayar",
+        "Gender": "Male",
+        "Height": "180 cm",
+        "LastName": "Doe",
+        "Weight": "75 kg"
+      }
+    }
+  }
+}

@@ -1,0 +1,824 @@
+.popup-chart {
+  position: absolute;
+  top: 50px; /* Adjust the top position to control the popup's vertical placement */
+  left: 50px; /* Adjust the left position to control the popup's horizontal placement */
+  width: 400px; /* Adjust the width as needed */
+  height: 300px; /* Adjust the height as needed */
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 999; /* Ensure it's above other content */
+  text-align: center; /* Center the close button horizontally */
+}
+
+.close-button {
+  position: absolute;
+  top: 10px; /* Adjust the top position of the close button */
+  right: 10px; /* Adjust the right position of the close button */
+  cursor: pointer;
+  font-size: 20px;
+}
+.number.respiration {
+  padding-top: 10px;
+  font-size: 20px !important;
+}
+
+.number.heartrate {
+  padding-top: 10px;
+  font-size: 20px !important;
+}
+
+.number.spo2 {
+  padding-top: 10px;
+  font-size: 20px !important;
+}
+
+.number.temp {
+  padding-top: 10px;
+  font-size: 20px !important;
+}
+
+.number.bp {
+  padding-top: 10px;
+  font-size: 20px !important;
+}
+
+.number.height {
+  padding-top: 10px;
+  font-size: 20px !important;
+}
+
+.number.weight {
+  padding-top: 10px;
+  font-size: 20px !important;
+}
+
+.number.bmi {
+  padding-top: 10px;
+  font-size: 20px !important;
+}
+
+.box {
+  width: 150px;
+  height: 160px;
+  margin: 10px;
+  display: inline-block;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-container button {
+  padding: 8px 12px;
+  background-color: #002c5d;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 3px;
+  /* Add margin between buttons */
+}
+
+.button-container button:last-child {
+  margin-right: 0;
+  /* Remove margin from the last button */
+}
+
+.button-container button:hover {
+  background-color: #39c9bb;
+}
+
+.button-container1 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-container1 button {
+  padding: 4px 6px;
+  background-color: #002c5d;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 2px;
+  /* Add margin between buttons */
+}
+
+.button-container1 button:last-child {
+  margin-right: 0;
+  /* Remove margin from the last button */
+}
+
+.button-container1 button:hover {
+  background-color: #39c9bb;
+}
+
+/* Googlefont Poppins CDN Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.pre_loader {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: #ffffff url('https://flevix.com/wp-content/uploads/2020/01/Lazy-Loader-1.gif') no-repeat center/30%;
+  z-index: 999;
+}
+
+.home-section {
+  position: relative;
+  background: #f5f5f5;
+  min-height: 100vh;
+  transition: all 0.5s ease;
+}
+
+.box-content .overview-boxes {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 0 20px;
+  margin-bottom: 49px;
+}
+
+.overview-boxes .box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% / 4 - 15px);
+  background: #fff;
+  padding: 15px 28px;
+  margin: 14px 0px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.overview-boxes .box-topic {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.box-content .box .number {
+  display: inline-block;
+  font-size: 35px;
+  margin-top: -6px;
+  font-weight: 500;
+}
+
+.box-content .box .indicator {
+  display: flex;
+  align-items: center;
+}
+
+.box-content .box .indicator i {
+  height: 20px;
+  width: 20px;
+  background: #8FDACB;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.box .indicator i.down {
+  background: #e87d88;
+}
+
+.box-content .box .indicator .text {
+  font-size: 12px;
+}
+
+.box-content .box .cart {
+  display: inline-block;
+  font-size: 50px;
+  height: 60px;
+  width: 60px;
+  background: #cce5ff;
+  line-height: 50px;
+  text-align: center;
+  color: #66b0ff;
+  border-radius: 12px;
+  margin: -10px 0 0 6px;
+}
+
+.box-content .box .cart.two {
+  color: #2BD47D;
+  background: #C0F2D8;
+}
+
+.box-content .box .cart.three {
+  color: #ffc233;
+  background: #ffe8b3;
+}
+
+.box-content .box .cart.four {
+  color: #e05260;
+  background: #f7d4d7;
+  height: 50px;
+  width: 50px;
+}
+
+@media (max-width: 1000px) {
+  .overview-boxes .box {
+    width: calc(100% / 2 - 15px);
+    margin-bottom: 15px;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+@media (max-width: 700px) {
+  /* Common styles for all elements within the media query */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+.home-section .box-content {
+  position: relative;
+  /* padding-top: 104px; */
+}
+
+.box-content .overview-boxes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 20px;
+  margin-bottom: 26px;
+}
+
+.overview-boxes .box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% / 4 - 15px);
+  background: #fff;
+  padding: 15px 14px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.overview-boxes .box-topic {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.box-content .box .number {
+  display: inline-block;
+  font-size: 35px;
+  margin-top: -6px;
+  font-weight: 500;
+}
+
+.box-content .box .indicator {
+  display: flex;
+  align-items: center;
+}
+
+.box-content .box .manualtext {
+  display: flex;
+  align-items: right;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Style the popup container and increase its size */
+.popup {
+  display: none;
+  position: absolute;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
+  /* Increase the width as per your preference */
+  text-align: center;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  top: 40px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+/* Style the numeric reading value */
+#sensorReading {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+  text-align: center;
+  /* Center-align the numeric value */
+}
+
+/* Style the buttons inside the popup */
+.popup button {
+  background: #0074cc;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  /* Increase the padding for larger buttons */
+  margin: 5px;
+  cursor: pointer;
+}
+
+.popup button:hover {
+  background: #00529b;
+}
+
+.box-content .box .indicator i {
+  height: 20px;
+  width: 20px;
+  background: #8FDACB;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.box .indicator i.down {
+  background: #e87d88;
+}
+
+.box-content .box .indicator .text {
+  font-size: 12px;
+}
+
+.box-content .box .cart {
+  display: inline-block;
+  font-size: 32px;
+  height: 50px;
+  width: 50px;
+  background: #cce5ff;
+  line-height: 50px;
+  text-align: center;
+  color: #66b0ff;
+  border-radius: 12px;
+  margin: -15px 0 0 6px;
+}
+
+.box-content .box .cart.two {
+  color: #2BD47D;
+  background: #C0F2D8;
+}
+
+.box-content .box .cart.three {
+  color: #ffc233;
+  background: #ffe8b3;
+}
+
+.box-content .box .cart.four {
+  color: #e05260;
+  background: #f7d4d7;
+}
+
+.box-content .total-order {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.box-content .sales-boxes {
+  display: flex;
+  justify-content: space-between;
+  /* padding: 0 20px; */
+}
+
+/* left box */
+.box-content .sales-boxes .recent-sales {
+  width: 100%;
+  background: #fff;
+  padding: 20px 30px;
+  margin: 0 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.box-content .sales-boxes .sales-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sales-boxes .box .title {
+  font-size: 24px;
+  font-weight: 500;
+  /* margin-bottom: 10px; */
+}
+
+.sales-boxes .sales-details li.topic {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.sales-boxes .sales-details li {
+  list-style: none;
+  margin: 8px 0;
+}
+
+.sales-boxes .sales-details li a {
+  font-size: 18px;
+  color: #333;
+  font-size: 400;
+  text-decoration: none;
+}
+
+.sales-boxes .box .button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sales-boxes .box .button a {
+  color: #fff;
+  background: #0A2558;
+  padding: 4px 12px;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.sales-boxes .box .button a:hover {
+  background: #0d3073;
+}
+
+/* Responsive Media Query */
+@media (max-width: 1240px) {
+  .sidebar {
+    width: 60px;
+  }
+
+  .sidebar.active {
+    width: 220px;
+  }
+
+  .home-section {
+    width: calc(100%);
+    left: 60px;
+  }
+
+}
+
+@media (max-width: 1150px) {
+  .box-content .sales-boxes {
+    flex-direction: column;
+  }
+
+  .box-content .sales-boxes .box {
+    width: 100%;
+    overflow-x: scroll;
+    margin-bottom: 30px;
+  }
+
+  .box-content .sales-boxes .top-sales {
+    margin: 0;
+  }
+}
+
+@media (max-width: 1000px) {
+  .overview-boxes .box {
+    width: calc(100% / 2 - 15px);
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 700px) {
+  .home-section nav .profile-details {
+    height: 50px;
+    min-width: 40px;
+  }
+
+  .box-content .sales-boxes .sales-details {
+    width: 560px;
+  }
+}
+
+@media (max-width: 550px) {
+  .overview-boxes .box {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+
+.bx {
+  padding-bottom: 3px;
+}
+
+/* Googlefont Poppins CDN Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.sidebar {
+  position: fixed;
+  height: 100%;
+  width: 240px;
+  background: #0A2558;
+  transition: all 0.5s ease;
+}
+
+.sidebar.active {
+  width: 60px;
+}
+
+.container#blur.active {
+  filter: blur(20px);
+}
+
+.sidebar .logo-details {
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar .logo-details i {
+  font-size: 28px;
+  font-weight: 500;
+  color: #fff;
+  min-width: 60px;
+  text-align: center
+}
+
+.sidebar .logo-details .logo_name {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.sidebar .nav-links {
+  margin-top: 10px;
+}
+
+.sidebar .nav-links li {
+  position: relative;
+  list-style: none;
+  height: 50px;
+  cursor: pointer;
+  /* height: 100%; */
+  /* width: 100%; */
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.sidebar .nav-links li a {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.sidebar .nav-links li.active {
+  background-color: #6b86b8;
+}
+
+.sidebar .nav-links li.active:hover {
+  background-color: #6b86b8;
+}
+
+.sidebar .nav-links li:hover {
+  background: #1f3e77;
+}
+
+.sidebar .nav-links li i {
+  min-width: 60px;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+}
+
+
+li.active {
+  background-color: #1f3e77;
+  /* padding-top: 10px; */
+}
+
+.sidebar .nav-links li .links_name {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.sidebar .nav-links .log_out {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.sidebar.active~.home-section {
+  width: calc(100% - 60px);
+  left: 60px;
+}
+
+.home-section .box-content {
+  position: relative;
+  padding-top: 28px;
+}
+
+.box-content .overview-boxes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 37px;
+  margin-bottom: 26px;
+}
+
+.overview-boxes .box {
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% / 4 - 15px);
+  background: #fff;
+  padding: 15px 49px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+
+.overview-boxes .box-topic {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.box-content .box .number {
+  display: inline-block;
+  font-size: 35px;
+  margin-top: -6px;
+  font-weight: 500;
+}
+
+.box-content .box .indicator {
+  display: flex;
+  align-items: center;
+}
+
+.box-content .box .indicator i {
+  height: 20px;
+  width: 20px;
+  background: #8FDACB;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.box .indicator i.down {
+  background: #e87d88;
+}
+
+.box-content .box .indicator .text {
+  font-size: 12px;
+}
+
+.box-content .box .cart {
+  display: inline-block;
+  font-size: 32px;
+  height: 50px;
+  width: 50px;
+  background: #cce5ff;
+  line-height: 50px;
+  text-align: center;
+  color: #66b0ff;
+  border-radius: 12px;
+  margin: -15px 0 0 6px;
+}
+
+.box {
+  margin-top: 15px;
+}
+
+.box-content .box .cart.two {
+  color: #2BD47D;
+  background: #C0F2D8;
+}
+
+.box-content .box .cart.three {
+  color: #ffc233;
+  background: #ffe8b3;
+}
+
+.box-content .box .cart.four {
+  color: #e05260;
+  background: #f7d4d7;
+}
+
+.box-content .total-order {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.box-content .sales-boxes {
+  display: flex;
+  justify-content: space-between;
+  /* padding: 0 20px; */
+}
+
+/* Responsive Media Query */
+@media (max-width: 1240px) {
+  .sidebar {
+    width: 60px;
+  }
+
+  .home-section {
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+
+  .home-section nav {
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .box-content .sales-boxes {
+    flex-direction: column;
+  }
+
+  .box-content .sales-boxes .box {
+    width: 100%;
+    overflow-x: scroll;
+    margin-bottom: 30px;
+  }
+
+  .box-content .sales-boxes .top-sales {
+    margin: 0;
+  }
+}
+
+@media (max-width: 1000px) {
+  .overview-boxes .box {
+    width: calc(100% / 2 - 15px);
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 700px) {
+  .box-content .sales-boxes .sales-details {
+    width: 560px;
+  }
+}
+
+@media (max-width: 550px) {
+  .overview-boxes .box {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+
+.box-content .sales-boxes .sales-details {
+  width: 560px;
+}
+
+@media (max-width: 550px) {
+  .overview-boxes .box {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+
+.bx {
+  padding-bottom: 3px;
+}
+
+/* Add this to your CSS to change cursor to pointer for clickable elements */
+.clickable {
+  cursor: pointer;
+}
+
+.box-content .value {
+  margin-top: 10px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+span {
+  font-size: 13px;
+}

@@ -1,0 +1,27 @@
+/* Reset margin and padding for the whole page */
+/* body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  } */
+  
+  /* Set a minimum height for the main content area to push the footer down */
+  /*.main-wrapper {
+    min-height: 100%;
+    position: relative;
+  } */
+
+  /* Adjust footer position */
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  
+/* .login-section {
+    padding: 100px 0;
+  }  */
+
+  
+  

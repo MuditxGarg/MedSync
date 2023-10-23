@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard | MedSync</title>
+  <link rel="icon" type="image/png" href="./static/assets/img/favicon.png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='dashboard/patient/css/main.css') }}">
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    .out-of-range {
+      color: red; /* Apply red color for out-of-range values */
+    }
+  </style>
+</head>
+
+<body>
+  <section class="home-section">
+    <div class="box-content dashboard active">
+      <h2 style="padding-left: 40px;">Patient Dashboard</h2>
+      <div class="overview-boxes">
+        <!-- Appointment Tile -->
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Appointment</div>
+            <div class="number appointment"></div>
+            <div class="indicator">
+              <!-- No specific text for Appointment -->
+            </div>
+            <div class="manualtext">
+              <div class="button-container">
+                <button onclick="redirectToBookAppointment()">Book</button>
+                <button onclick="redirectToRescheduleAppointment()">Reschedule</button>
+                <button onclick="redirectToAppointmentHistory()">History</button>
+              </div>
+            </div>
+          </div>
+          <i class="fas fa-calendar-alt cart"></i>
+        </div>
+
+        <!-- Patient Records Tile -->
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Patient Records</div>
+            <div class="number patient-records"></div>
+            <div class="indicator">
+              <!-- No specific text for Patient Records -->
+            </div>
+            <div class="manualtext">
+              <div class="button-container1">
+                <button onclick="redirectToPrescriptions()">Prescriptions</button>
+                <button onclick="redirectToLabReports()">Lab Reports</button>
+                <button onclick="redirectToInpatientRecords()">Inpatient Records</button>
+              </div>
+            </div>
+          </div>
+          <i class="bx bx-folder cart"></i>
+        </div>
+
+        <!-- Symptoms Chatbot Tile -->
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Symptoms Chatbot</div>
+            <div class="number appointment"></div>
+            <div class="indicator">
+              <!-- No specific text for Appointment -->
+            </div>
+            <div class="manualtext">
+              <div class="button-container">
+                <button onclick="redirectToChatbot()">Understand your Symptoms</button>
+              </div>
+            </div>
+          </div>
+          <i class="bx bx-conversation cart"></i>
+        </div>
+
+        <!-- Live Vitals Tile -->
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Live Vitals</div>
+            <div class="number appointment"></div>
+            <div class="indicator">
+              <!-- No specific text for Appointment -->
+            </div>
+            <div class="manualtext">
+              <div class="button-container">
+                <button onclick="redirectToLiveVitals()">Realtime Vitals</button>
+              </div>
+            </div>
+          </div>
+          <i class="bx bx-line-chart cart"></i>
+        </div>
+
+        <!-- Heart Rate Tile -->
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Heart Rate</div>
+            <div class="number heartrate">
+              {{ data['heart'] }} bpm
+            </div>
+            <div class="indicator">
+              <span class="text">Ideal [60 to 100 bpm]</span>
+            </div>
+            <div class="manualtext">
+              <span class="text" onclick="openSensorPopup(1)" class="clickable">Manually Record Value</span>
+              <div class="popup" id="sensorPopup1">
+                <span class="popup-text">Recording Heart Rate:</span>
+                <span id="sensorReading1">0</span>
+                <button onclick="retakeSensorValue(1)">Retake</button>
+                <button onclick="saveSensorValue(1)">Save</button>
+                <br>
+                <button onclick="closeSensorPopup(1)">Close</button>
+              </div>
+              <span class="text" id="trendlineText1" onclick="showTrendlineChart()">See Trendline</span>
+              <div id="trendlineChart1" class="popup-chart" style="display: none;">
+                <span class="close-button" onclick="closeTrendlineChart()">&#10006;</span>
+                <!-- Trendline chart goes here (you can use a charting library) -->
+              </div>
+            </div>
+          </div>
+          <i class="fas fa-heartbeat cart four"></i>
+        </div>
+
+        <!-- SpO2 Tile -->
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">SpO2</div>
+            <div class="number spo2">
+              {{ data['spo'] }}%
+            </div>
+            <div class="indicator">
+              <span class="text">Ideal [95% or higher]</span>
+            </div>
+            <div class="manualtext">
+              <span class="text" onclick="openSensorPopup(2)" class="clickable">Manually Record Value</span>
+              <div class="popup" id="sensorPopup2">
+                <span class="popup-text">Recording SpO2 value:</span>
+                <span id="sensorReading2">0</span>
+                <button onclick="retakeSensorValue(2)">Retake</button>
+                <button onclick="saveSensorValue(2)">Save</button>
+                <br>
+                <button onclick="closeSensorPopup(2)">Close</button>
+              </div>
+              <span class="text" id="trendlineText2" onclick="showTrendlineChart()">See Trendline</span>
+              <div id="trendlineChart2" class="popup-chart" style="display: none;">
+                <span class="close-button" onclick="closeTrendlineChart()">&#10006;</span>
+                <!-- Trendline chart goes here (you can use a charting library) -->
+              </div>
+            </div>
+          </div>
+          <i class="fas fa-wind cart three"></i>
+        </div>
+
+        <!-- Temperature Tile -->
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Temperature</div>
+            <div class="number temp">
+              {{ data['temp'] }} °C
+            </div>
+            <div class="indicator">
+              <span class="text">Ideal [36.1°C to 37.2°C]</span>
+            </div>
+            <div class="manualtext">
+              <span class="text" onclick="openSensorPopup(3)" class="clickable">Manually Record Value</span>
+              <div class="popup" id="sensorPopup3">
+                <span class="popup-text">Recording Temperature:</span>
+                <span id="sensorReading3">0</span>
+                <button onclick="retakeSensorValue(3)">Retake</button>
+                <button onclick="saveSensorValue(3)">Save</button>
+                <br>
+                <button onclick="closeSensorPopup(3)">Close</button>
+              </div>
+              <span class="text" id="trendlineText3">See Trendline</span>
+              <div id="trendlineChart3" style="display: none;">
+                <!-- Trendline chart goes here (you can use a charting library) -->
+              </div>
+            </div>
+          </div>
+          <i class="fa-solid fa-temperature-half cart "></i>
+        </div>
+
+        <!-- BP Tile -->
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">BP</div>
+            <div class="number bp">
+              {{ data['BP'] | replace('"', '') }} mmHg
+            </div>
+            <div class="indicator">
+              <span class="text">Ideal [90/60mmHg to 120/80mmHg]</span>
+            </div>
+            <div class="manualtext">
+              <span class="text" onclick="openSensorPopup(4)" class="clickable">Manually Record Value</span>
+              <div class="popup" id="sensorPopup4">
+                <span class="popup-text">Enter the BP record:</span>
+                <input type="text" id="sensorValueInput4">
+                <button onclick="retakeSensorValue(4)">Clear</button>
+                <button onclick="saveSensorValue(4)">Save</button>
+                <br>
+                <button onclick="closeSensorPopup(4)">Close</button>
+              </div>
+            </div>
+          </div>
+          <i class="fas fa-heart cart two"></i>
+        </div>
+
+        <!-- Respiration Rate Tile -->
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Respiration Rate</div>
+            <div class="number respiration">Normal</div>
+            <div class="manualtext">
+              <span class="text" onclick="openSensorPopup(5)" class="clickable">Check Realtime Value</span>
+              <div class="popup" id="sensorPopup5">
+                <span class="popup-text">Current value:</span>
+                <span id="sensorReading3">Normal</span>
+                </br>
+                <button onclick="retakeSensorValue(5)">Retake</button>
+                <button onclick="saveSensorValue(5)">Save</button>
+                <br>
+                <button onclick="closeSensorPopup(5)">Close</button>
+              </div>
+            </div>
+          </div>
+          <i class="fas fa-lungs cart two"></i>
+        </div>
+
+        <!-- Height Tile -->
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Height</div>
+            <div class="number height">
+              {{ data['Height'] }}
+            </div>
+            <div class="manualtext">
+              <span class="text" onclick="openSensorPopup(6)" class="clickable">Manually Record Value</span>
+              <div class="popup" id="sensorPopup6">
+                <span class="popup-text">Enter the Height:</span>
+                <input type="text" id="sensorValueInput6">
+                <button onclick="retakeSensorValue(6)">Clear</button>
+                <button onclick="saveSensorValue(6)">Save</button>
+                <br>
+                <button onclick="closeSensorPopup(6)">Close</button>
+              </div>
+              <span class="text" id="trendlineText6">See Trendline</span>
+              <div id="trendlineChart6" style="display: none;">
+                <!-- Trendline chart goes here (you can use a charting library) -->
+              </div>
+            </div>
+          </div>
+          <i class="fas fa-ruler cart"></i>
+        </div>
+
+        <!-- Weight Tile -->
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Weight</div>
+            <div class="number weight">
+              {{ data['Weight'] }}
+            </div>
+            <div class="manualtext">
+              <span class="text" onclick="openSensorPopup(7)" class="clickable">Manually Record Value</span>
+              <div class="popup" id="sensorPopup7">
+                <span class="popup-text">Enter the Weight:</span>
+                <input type="text" id="sensorValueInput7">
+                <button onclick="retakeSensorValue(7)">Clear</button>
+                <button onclick="saveSensorValue(7)">Save</button>
+                <br>
+                <button onclick="closeSensorPopup(7)">Close</button>
+              </div>
+              <span class="text" id="trendlineText7">See Trendline</span>
+              <div id="trendlineChart7" style="display: none;">
+                <!-- Trendline chart goes here (you can use a charting library) -->
+              </div>
+            </div>
+          </div>
+          <i class="fas fa-weight cart"></i>
+        </div>
+
+        <!-- BMI Tile -->
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">BMI</div>
+            <div class="number bmi"></div>
+            <div class="indicator">
+              <span class="text">Ideal [18.5 to 24.9]</span>
+            </div>
+            <div class="manualtext">
+              <span class="text" id="trendlineText8">See Trendline</span>
+              <div id="trendlineChart8" style="display: none;">
+                <!-- Trendline chart goes here (you can use a charting library) -->
+              </div>
+            </div>
+          </div>
+          <i class="fas fa-balance-scale cart"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Function to calculate BMI
+    function calculateBMI() {
+      // Get height (in cm) and weight (in kg) values from the data
+      var heightElement = document.querySelector(".number.height");
+      var weightElement = document.querySelector(".number.weight");
+
+      var heightInCm = parseFloat(heightElement.textContent);
+      var weightInKg = parseFloat(weightElement.textContent);
+
+      // Convert height to meters
+      var heightInM = heightInCm / 100;
+
+      // Check if height and weight are valid numbers
+      if (!isNaN(heightInCm) && !isNaN(weightInKg)) {
+        // Calculate BMI
+        var bmi = weightInKg / (heightInM * heightInM);
+
+        // Display the calculated BMI in the BMI tile
+        var bmiElement = document.querySelector(".number.bmi");
+        bmiElement.textContent = bmi.toFixed(1);
+
+        // Update the BMI indicator and trendline text as before
+        // ...
+      } else {
+        // Handle invalid height or weight values
+        console.log("Invalid height or weight values.");
+      }
+    }
+
+    // Call the calculateBMI function when the page loads
+    window.addEventListener("load", calculateBMI);
+  </script>
+  <script>
+    // Function to check and display values in red if out of range
+    function checkAndHighlightOutOfRangeValues() {
+      // Define the ideal ranges for each tile
+      var idealRanges = {
+        'Heart Rate': [60, 100],
+        'SpO2': [95, 100],
+        'Temperature': [36.1, 37.2],
+        'BP': [90, 60, 120, 80],
+        'BMI': [18.5, 24.9]
+        // Add more ideal ranges as needed
+      };
+
+      // Loop through each box
+      var boxes = document.querySelectorAll('.box');
+      boxes.forEach(function (box) {
+        var boxTopic = box.querySelector('.box-topic').textContent;
+        var numberElement = box.querySelector('.number');
+
+        // Check if the box topic is in the idealRanges
+        if (idealRanges.hasOwnProperty(boxTopic)) {
+          var idealRange = idealRanges[boxTopic];
+          var value = parseFloat(numberElement.textContent);
+
+          // Check if the value is out of range
+          if (isNaN(value) || value < idealRange[0] || value > idealRange[1]) {
+            // If out of range, add a class to change the color
+            numberElement.classList.add('out-of-range');
+          }
+        }
+      });
+    }
+
+    // Call the checkAndHighlightOutOfRangeValues function when the page loads
+    window.addEventListener("load", checkAndHighlightOutOfRangeValues);
+  </script>
+  <script src="https://kit.fontawesome.com/1ed7106697.js" crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename='dashboard/patient/js/index.js') }}"></script>
+</body>
+
+</html>

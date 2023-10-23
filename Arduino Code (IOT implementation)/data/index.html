@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+<!-- Rui Santos - Complete project details at https://RandomNerdTutorials.com
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software. -->
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <style>
+    body {
+      min-width: 310px;
+      max-width: 800px;
+      height: 400px;
+      margin: 0 auto;
+    }
+    h2 {
+      font-family: Arial;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>patient live Data</h2>
+  <div id="chart-sensor-1" class="container"></div>
+  <div id="chart-sensor-2" class="container"></div>
+  <div id="chart-sensor-3" class="container"></div>
+  <div id="chart-sensor-4" class="container"></div>
+  <div id="chart-sensor-5" class="container"></div>
+  <div id="chart-sensor-6" class="container"></div>
+  <div id="chart-sensor-7" class="container"></div>
+  <div id="chart-sensor-8" class="container"></div>
+  <div id="chart-sensor-9" class="container"></div>
+
+  <script>
+    // Define an array of chart objects for all sensors
+    var charts = [];
+
+    // Create a function to initialize a chart for a sensor
+    function createSensorChart(sensorId, title, color) {
+      var chart = new Highcharts.Chart({
+        chart: { renderTo: 'chart-sensor-' + sensorId },
+        title: { text: title },
+        series: [{
+          showInLegend: false,
+          data: []
+        }],
+        plotOptions: {
+          line: {
+            animation: false,
+            dataLabels: { enabled: true }
+          },
+          series: { color: color }
+        },
+        xAxis: {
+          type: 'datetime',
+          dateTimeLabelFormats: { second: '%H:%M:%S' }
+        },
+        yAxis: {
+          title: { text: title }
+        },
+        credits: { enabled: false }
+      });
+      charts[sensorId] = chart;
+    }
+
+    // Initialize charts for each sensor
+    createSensorChart(1, 'Accelerometer X', '#FF5733');
+    createSensorChart(2, 'Accelerometer Y', '#FF5733');
+    createSensorChart(3, 'Accelerometer Z', '#FF5733');
+    createSensorChart(4, 'Heart Beat', '#33FF57');
+    createSensorChart(5, 'SPO2', '#5733FF');
+    createSensorChart(6, 'Mic', '#FF33A1');
+    createSensorChart(7, 'Temp', '#33FFA1');
+    createSensorChart(8, 'Pressure', '#A133FF');
+    createSensorChart(9, 'Pressure Diff', '#33A1FF');
+
+
+    function updateCharts() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var data = JSON.parse(this.responseText);
+          console.log(data);
+          var x = (new Date()).getTime();
+
+          // Update data for each sensor chart
+          for (var sensorId in charts) {
+            if (charts.hasOwnProperty(sensorId)) {
+              if (charts[sensorId].series[0].data.length > 40) {
+                charts[sensorId].series[0].addPoint([x, data['sensor' + sensorId]], true, true, true);
+              } else {
+                charts[sensorId].series[0].addPoint([x, data['sensor' + sensorId]], true, false, true);
+              }
+            }
+          }
+        }
+      };
+      xhttp.open("GET", "/sensorData", true);
+      xhttp.send();
+    }
+
+    setInterval(updateCharts, 1000); // Call the function every second
+  </script>
+</body>
+</html>
